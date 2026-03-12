@@ -1,0 +1,174 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -288,
+        96
+      ],
+      "id": "717d6387-0ebe-4afb-b189-1554827acc83",
+      "name": "Telegram Trigger",
+      "webhookId": "9eb20f39-3778-4612-90e6-899ee721c8e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "WwquRXWR8yu50ZyQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "id-1",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+              "rightValue": "/start",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "39ba7775-c008-4f3d-b2ba-5cebfed6c19d",
+      "name": "Check if Start Command",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -64,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "welcomeText",
+              "value": "Bienvenido a ChessGame",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "a13cfe3b-3876-43df-8313-1f9d339429d2",
+      "name": "Prepare Welcome Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "={{ $json.welcomeText }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎮 Jugar",
+                    "additionalFields": {
+                      "url": "http://t.me/chessgamevercel_bot/chessgame_bot"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a0eb175c-5d27-4f50-a8ac-9d616684a037",
+      "name": "Send Welcome to User",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        384,
+        96
+      ],
+      "webhookId": "33af8a5f-eb1f-4992-8aba-faef55c937b0",
+      "credentials": {
+        "telegramApi": {
+          "id": "WwquRXWR8yu50ZyQ",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Check if Start Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Start Command": {
+      "main": [
+        [
+          {
+            "node": "Prepare Welcome Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Welcome Message": {
+      "main": [
+        [
+          {
+            "node": "Send Welcome to User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "12d682f7-3001-4829-818e-83f61a0c4408",
+  "meta": {
+    "instanceId": "88e9313e6a6e732c6bc1eafb219feea075289b3169a01bb64f46789178be39f0"
+  },
+  "id": "ncKuf7lowcIVCIID",
+  "tags": []
+}
