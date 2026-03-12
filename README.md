@@ -6,4 +6,6 @@ correo:[rodolfo.vercel@gmail.com](mailto:rodolfo.vercel@gmail.com)
 
 <a href="https://xyvenqorix.vercel.app/">🔵 portafolio</a> &nbsp;&nbsp;|&nbsp;&nbsp;
 <a href="https://chess-game-beta-smoky.vercel.app/">🔵 link juego web</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="https://n8n.io/">🔵 n8n automato web</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+
 
