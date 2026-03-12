@@ -1,5 +1,5 @@
 flujo de n8n para automatizar un juego de telegram ylo usepara el mio chess-game 
-
+tines que importar el json en la pagina  de n8n para activar el flujo , luego lo editan a su manera 
 ceado por Xyvenqorix 
 
 correo:[rodolfo.vercel@gmail.com](mailto:rodolfo.vercel@gmail.com) 
